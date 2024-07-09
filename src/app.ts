@@ -6,6 +6,7 @@ import path from 'path'
 import { loggingMiddleware } from './utils/logger';
 import { errorHandler } from './utils/errors/errorHanler';
 
+// ===============================================================
 
 // Dynamically load swagger.json
 const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, 'docs/swagger.json'), 'utf8'));

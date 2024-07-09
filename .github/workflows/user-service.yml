@@ -1,4 +1,4 @@
-name: CI
+name: user-service  #name of workflow
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
-      run: yarn install
+      run: yarn 
 
     - name: Generate TSOA spec and routes
       run: yarn tsoa:gen

@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path'
 import { loggingMiddleware } from './utils/logger';
 import { errorHandler } from './utils/errors/errorHanler';
+
 // ===============================================================
 
 // Dynamically load swagger.json

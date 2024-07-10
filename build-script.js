@@ -19,18 +19,27 @@ esbuild.build({
   },
   plugins: [
     // (2) Solve: https://stackoverflow.com/questions/62136515/swagger-ui-express-plugin-issue-with-webpack-bundling-in-production-mode/63048697#63048697
+    // copy({
+    //   from: [
+    //     'node_modules/swagger-ui-dist/*.css',
+    //     'node_modules/swagger-ui-dist/*.js',
+    //     'node_modules/swagger-ui-dist/*.png',
+    //     'src/configs/.env.production'
+    //   ],
+    //   to: [
+    //     'build/node_modules/swagger-ui-dist/',
+    //     'build/node_modules/swagger-ui-dist/',
+    //     'build/node_modules/swagger-ui-dist/',
+    //     'build/configs/'
+    //   ]
+    // })
+
     copy({
-      from: [
-        'node_modules/swagger-ui-dist/*.css',
-        'node_modules/swagger-ui-dist/*.js',
-        'node_modules/swagger-ui-dist/*.png',
-        'src/configs/.env.production'
-      ],
-      to: [
-        'build/node_modules/swagger-ui-dist/',
-        'build/node_modules/swagger-ui-dist/',
-        'build/node_modules/swagger-ui-dist/',
-        'build/configs/'
+      targets: [
+        { src: 'node_modules/swagger-ui-dist/*.css', dest: 'build/node_modules/swagger-ui-dist/' },
+        { src: 'node_modules/swagger-ui-dist/*.js', dest: 'build/node_modules/swagger-ui-dist/' },
+        { src: 'node_modules/swagger-ui-dist/*.png', dest: 'build/node_modules/swagger-ui-dist/' },
+        { src: 'src/configs/*', dest: 'build/configs/' }  // Copy the entire configs directory
       ]
     })
   ],

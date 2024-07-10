@@ -5,7 +5,7 @@ import { getLocalIPAddress } from "@/src/utils/catch-ip/catchIp";
 // import { colors } from "./utils/colors";
 import { connectDB } from "./database";
 import { createBorderedMessage } from "./utils/create-border/createBorderMessage";
-//========================================================================
+//==========================================================================
 
 
 connectDB();

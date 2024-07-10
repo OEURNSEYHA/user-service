@@ -27,8 +27,11 @@ jobs:
       - name: Generate TSOA routes and spec
         run: yarn tsoa:gen
         
+      - name: Run tests
+        run: yarn test
+        
       - name: Run builds
         run: yarn build
 
-      - name: Run tests
-        run: yarn test
+      - name: Run start
+        run: yarn start

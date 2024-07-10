@@ -1,12 +1,11 @@
 import { UserRepositories } from '@/src/database/repositories/user.repository'; // Adjust the path to your UserRepository
-import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { NotFoundError, ValidationError } from '@/src/utils/errors/customErrors'; // Adjust the path to your custom ValidationError
 import { ICreateUser, IUpdateUser, User } from '../database/models/user.model';
 import { UserQueryParams } from '../controllers/user.controller';
+import bcrypt from "bcryptjs"
 // import { UserModel, User } from '../database/models/user.model';
 //===========================================
-
 
 export class UserService {
   private userRepository: UserRepositories;

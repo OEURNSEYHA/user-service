@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import validator from "validator";
 import { UserRepositories } from "@/src/database/repositories/user.repository";
 import { ValidationError } from "@/src/utils/errors/customErrors";

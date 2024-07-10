@@ -1,43 +1,26 @@
-name: user-service  #name of workflow
+name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16]
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '14'
 
     - name: Install dependencies
-      run: yarn 
-
-    - name: Generate TSOA spec and routes
-      run: yarn tsoa:gen
+      run: yarn install
 
     - name: Run tests
       run: yarn test
-
-    - name: Build the project
-      run: yarn build
-
-    - name: Start the application
-      run: yarn start
-      env:
-        NODE_ENV: production

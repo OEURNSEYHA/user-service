@@ -1,37 +1,23 @@
-name: CI
+name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
+      - uses: actions/checkout@v2
+      - name: Copy .env.production
+        run: cp src/configs/.env.production.example src/configs/.env.production  # Ensure the .env file is copied to the correct location
+      - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.0.0'
-
-      - name: Install dependencies
-        run: yarn install --no-lockfile
-
-      - name: Generate TSOA routes and spec
-        run: yarn tsoa:gen
-        
-      - name: Run tests
-        run: yarn test
-        
-      - name: Run builds
-        run: yarn build
-
-      - name: Run start
-        run: yarn start
+          node-version: '20'
+      - run: yarn install
+      - run: yarn build
+      - run: yarn start

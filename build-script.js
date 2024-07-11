@@ -7,9 +7,9 @@ esbuild.build({
   entryPoints: ['src/server.ts'],
   bundle: true,
   platform: 'node',
-  target: 'node20',  // Target depends on your environment
+  target: 'node20',
   outdir: 'build',
-  external: ['express'],  // Specify Node.js packages here
+  external: ['express'],
   loader: {
     '.ts': 'ts',
   },

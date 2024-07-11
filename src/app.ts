@@ -10,11 +10,15 @@ import { errorHandler } from './utils/errors/errorHanler';
 // Dynamically load swagger.json
 const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, 'docs/swagger.json'), 'utf8'));
 
+
+
 // ========================
 // Initialize App Express
 // ========================
 const app = express();
 
+// app.use(swaggerUi.serve);
+app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // ========================
 // Loggin Middleware
 // ========================
@@ -33,7 +37,7 @@ RegisterRoutes(app)
 // ========================
 // API Documentations
 // ========================
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 
 // ========================
 // ERROR Handler

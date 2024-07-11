@@ -11,7 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -19,16 +18,22 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18.0.0'
+          node-version: '20'
 
       - name: Install dependencies
         run: yarn install --no-lockfile
-
+      - name: Create .env.production
+        run: |
+          echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> src/configs/.env.production
+          echo "PORT=${{ secrets.PORT }}" >> src/configs/.env.production
+          
       - name: Generate TSOA routes and spec
         run: yarn tsoa:gen
+        
+      - name: Run tests
+        run: yarn test
         
       - name: Run builds
         run: yarn build
 
-      - name: Run tests
-        run: yarn test
+    

@@ -1,6 +1,6 @@
 
 import app from "@/src/app"
-import configs from "@/src/utils/config";
+import configs from "@/src/config";
 import { getLocalIPAddress } from "@/src/utils/catch-ip/catchIp";
 // import { colors } from "./utils/colors";
 import { connectDB } from "./database";

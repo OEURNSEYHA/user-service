@@ -23,7 +23,11 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --no-lockfile
-
+      - name: Create .env.production
+        run: |
+          echo "MONGODB_URL=${{ secrets.MONGODB_URL }}" >> src/configs/.env.production
+          echo "PORT=${{ secrets.PORT }}" >> src/configs/.env.production
+          
       - name: Generate TSOA routes and spec
         run: yarn tsoa:gen
         

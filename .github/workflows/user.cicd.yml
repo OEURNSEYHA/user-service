@@ -88,9 +88,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            echo "NODE_ENV=production" > /path/to/deployment/directory/build/.env.production
-            echo "PORT=${{secrets.PORT}}" >> /path/to/deployment/directory/build/.env.production
-            echo "DATABASE_URL=${{secrets.MONGODB_URL}}" >> /path/to/deployment/directory/build/.env.production
+            echo "NODE_ENV=production" > /home/ubuntu/apps/build/configs/.env.production
+            echo "PORT=${{secrets.PORT}}" >> /home/ubuntu/apps/build/configs/.env.production
+            echo "DATABASE_URL=${{secrets.MONGODB_URL}}" >> /home/ubuntu/apps/build/configs/.env.production
 
       - name: Install Dependencies and Restart Application
         uses: appleboy/ssh-action@master  # Installs dependencies and restarts the application using a process manager

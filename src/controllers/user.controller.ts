@@ -7,7 +7,7 @@ import {
   Path,
   Queries,
   Request,
-  // Middlewares,
+  Middlewares,
   Put,
   Delete,
  
@@ -22,6 +22,7 @@ import {
 } from "@/src/utils/errors/customErrors";
 import { ReasonPhrases } from "@/src/utils/constands/satusCodes";
 import { UserService } from "../services/user.service";
+import {  authorizeUser } from "../middlewares/authRequire";
 
 export interface UserQueryParams {
   page?: number | undefined;
@@ -47,7 +48,7 @@ export class UsersController extends Controller {
 
   // get all user
   @Get()
-  // @Middlewares([authorizeUser, authorizeRoles("admin")])
+  @Middlewares([authorizeUser])
   async getAllUser(
     @Queries() query: UserQueryParams = { page: 1, limit: 10 }
   ): Promise<{ users: User[], totalUser: number, totalPages: number, }> {

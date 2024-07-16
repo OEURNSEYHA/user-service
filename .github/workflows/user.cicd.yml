@@ -115,7 +115,7 @@ jobs:
             source /home/ubuntu/.nvm/nvm.sh
             source /home/ubuntu/.profile
 
-            cd /home/ubuntu/apps/build
+            cd /home/ubuntu/apps/auth/build
             yarn install --production
             # Assume PM2 is used, Replace with other command for other process manager
             # Assume you have script for run start in production and restart in production

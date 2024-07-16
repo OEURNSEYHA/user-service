@@ -103,26 +103,28 @@ jobs:
             echo "PORT=${{secrets.PORT}}" >> /home/ubuntu/apps/build/configs/.env.production
             echo "DATABASE_URL=${{secrets.MONGODB_URL}}" >> /home/ubuntu/apps/build/configs/.env.production
 
-      - name: Install Dependencies and Restart Application
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            source /home/ubuntu/.nvm/nvm.sh
-            source /home/ubuntu/.profile
-            # Ensure yarn is installed
-            if ! command -v yarn &> /dev/null; then
-              echo "Yarn is not installed. Installing..."
-              npm install -g yarn
-            fi
-            cd /home/ubuntu/apps/build
-            yarn install --production
-            if pm2 show auth > /dev/null; then
-              echo "Application is running. Restarting..."
-              yarn restart
-            else
-              echo "Application is not running. Starting..."
-              yarn start
+     
+            - name: Install Dependencies and Restart Application
+            uses: appleboy/ssh-action@master  # Installs dependencies and restarts the application using a process manager
+            with:
+              host: ${{ secrets.SERVER_IP }}
+              username: ${{ secrets.SERVER_USERNAME }}
+              key: ${{ secrets.SSH_PRIVATE_KEY }}
+              port: 22
+              script: |
+                source /home/ubuntu/.nvm/nvm.sh
+                source /home/ubuntu/.profile
+
+                cd /home/ubuntu/apps/build
+                yarn install --production
+                # Assume PM2 is used, Replace with other command for other process manager
+                # Assume you have script for run start in production and restart in production
+                # Check if the PM2 process is running
+                if pm2 show your-service-name > /dev/null; then
+                  echo "Application is running. Restarting..."
+                  yarn restart
+                else
+                  echo "Application is not running. Starting..."
+                  yarn start
+                fi
+     

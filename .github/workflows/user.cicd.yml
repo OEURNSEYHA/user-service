@@ -76,7 +76,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          source: "./path/to/artifacts/*"
+          source: "./build*"
           target: "/home/ubuntu/apps/build"
           strip_components: 1  # Adjust based on the directory depth of the source
 
@@ -88,9 +88,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            echo "NODE_ENV=production" > /path/to/deployment/directory/build/.env
-            echo "PORT=your_port_number" >> /path/to/deployment/directory/build/.env
-            echo "DATABASE_URL=your_database_url" >> /path/to/deployment/directory/build/.env
+            echo "NODE_ENV=production" > /path/to/deployment/directory/build/.env.production
+            echo "PORT=${{secrets.PORT}}" >> /path/to/deployment/directory/build/.env.production
+            echo "DATABASE_URL=${{secrets.MONGODB_URL}}" >> /path/to/deployment/directory/build/.env.production
 
       - name: Install Dependencies and Restart Application
         uses: appleboy/ssh-action@master  # Installs dependencies and restarts the application using a process manager

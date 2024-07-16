@@ -78,6 +78,8 @@ jobs:
           port: 22
           source: "./build*"
           target: "/home/ubuntu/apps/build"
+          strip_components: 0
+          overwrite: true
          # strip_components: 1  # Adjust based on the directory depth of the source
 
       - name: Create .env File

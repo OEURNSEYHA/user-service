@@ -82,8 +82,8 @@ jobs:
           port: 22
           source: "./build/*"
           target: "/home/ubuntu/apps/build"
-          strip_components: 0
-          overwrite: true
+          # strip_components: 0
+          # overwrite: true
 
       - name: List server build directory contents
         uses: appleboy/ssh-action@master

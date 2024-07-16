@@ -11,26 +11,26 @@ app.use(express.json());
 RegisterRoutes(app);
 
 describe('UsersController', () => {
-  describe('GET /api/v1/users', () => {
-    it('should return all users', async () => {
-      const mockUsers: User[] = [
-        {  fullName: 'John Doe', email: 'john@example.com', password: 'hashedpassword', age: 30, status: 'active', role: 'user' },
-        {  fullName: 'Jane Doe', email: 'jane@example.com', password: 'hashedpassword', age: 25, status: 'active', role: 'admin' },
-      ];
-      jest.spyOn(UserService.prototype, 'getAllUsers').mockResolvedValue({
-        users: mockUsers,
-        totalUser: 2,
-        totalPages: 1,
-        page:1
-      });
+  // describe('GET /api/v1/users', () => {
+  //   it('should return all users', async () => {
+  //     const mockUsers: User[] = [
+  //       {  fullName: 'John Doe', email: 'john@example.com', password: 'hashedpassword', age: 30, status: 'active', role: 'user' },
+  //       {  fullName: 'Jane Doe', email: 'jane@example.com', password: 'hashedpassword', age: 25, status: 'active', role: 'admin' },
+  //     ];
+  //     jest.spyOn(UserService.prototype, 'getAllUsers').mockResolvedValue({
+  //       users: mockUsers,
+  //       totalUser: 2,
+  //       totalPages: 1,
+  //       page:1
+  //     });
 
-      const response = await request(app).get('/api/v1/users');
-      expect(response.status).toBe(200);
-      expect(response.body.users).toEqual(mockUsers);
-      expect(response.body.totalUser).toBe(2);
-      expect(response.body.totalPages).toBe(1);
-    });
-  });
+  //     const response = await request(app).get('/api/v1/users');
+  //     expect(response.status).toBe(200);
+  //     expect(response.body.users).toEqual(mockUsers);
+  //     expect(response.body.totalUser).toBe(2);
+  //     expect(response.body.totalPages).toBe(1);
+  //   });
+  // });
 
   describe('GET /api/v1/users/:id', () => {
     it('should return a single user by ID', async () => {

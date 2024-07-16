@@ -78,7 +78,7 @@ jobs:
           port: 22
           source: "./build*"
           target: "/home/ubuntu/apps/build"
-          strip_components: 1  # Adjust based on the directory depth of the source
+         # strip_components: 1  # Adjust based on the directory depth of the source
 
       - name: Create .env File
         uses: appleboy/ssh-action@master  # Creates an environment variable file on the server
@@ -100,12 +100,12 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /path/to/deployment/directory/build
+            cd /home/ubuntu/apps/build
             yarn install --production
             # Assume PM2 is used, Replace with other command for other process manager
             # Assume you have script for run start in production and restart in production
             # Check if the PM2 process is running
-            if pm2 show your-service-name > /dev/null; then
+            if pm2 show auth > /dev/null; then
               echo "Application is running. Restarting..."
               yarn restart
             else

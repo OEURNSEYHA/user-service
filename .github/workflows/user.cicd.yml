@@ -42,7 +42,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: ./build 
+          path: |
+            ./build
+            ./package.json
+            ./yarn.lock
 
   deploy:
     runs-on: ubuntu-latest
@@ -114,7 +117,7 @@ jobs:
             source /home/ubuntu/.nvm/nvm.sh
             source /home/ubuntu/.profile
 
-            cd /home/ubuntu/apps/build  # Correct path
+            cd /home/ubuntu/apps/build
             yarn install --production
             if pm2 show auth > /dev/null; then
               echo "Application is running. Restarting..."
@@ -122,4 +125,3 @@ jobs:
             else
               echo "Application is not running. Starting..."
               yarn start
-            fi

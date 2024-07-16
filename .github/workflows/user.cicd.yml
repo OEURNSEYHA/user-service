@@ -114,10 +114,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            source /home/ubuntu/.nvm/nvm.sh
-            source /home/ubuntu/.profile
+            # source /home/ubuntu/.nvm/nvm.sh
+            # source /home/ubuntu/.profile
 
-            cd /home/ubuntu/apps/auth/build/build
+            cd /home/ubuntu/apps/build/build/build
             yarn install --production
             if pm2 show auth > /dev/null; then
               echo "Application is running. Restarting..."

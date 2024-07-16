@@ -111,6 +111,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            source /home/ubuntu/.nvm/nvm.sh
+            source /home/ubuntu/.profile
             # Ensure yarn is installed
             if ! command -v yarn &> /dev/null; then
               echo "Yarn is not installed. Installing..."

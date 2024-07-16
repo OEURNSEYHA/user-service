@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest # Specifies that the job should run on the latest Ubuntu virtual environment provided by GitHub
     defaults:
       run:
-        working-directory: path/to/your/project # Adjust this to the root directory of your Node.js project
+        working-directory: "." # Adjust this to the root directory of your Node.js project
 
     steps:
       - name: Checkout code

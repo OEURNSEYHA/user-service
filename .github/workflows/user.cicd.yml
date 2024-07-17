@@ -104,7 +104,7 @@
 #           script: |
 #             echo "NODE_ENV=production" > /home/ubuntu/apps/build/configs/.env.production
 #             echo "PORT=${{secrets.PORT}}" >> /home/ubuntu/apps/build/configs/.env.production
-#             echo "DATABASE_URL=${{secrets.MONGODB_URL}}" >> /home/ubuntu/apps/build/configs/.env.production
+#             echo "MONGODB_URL=${{secrets.MONGODB_URL}}" >> /home/ubuntu/apps/build/configs/.env.production
 
    
 #       - name: Install Dependencies and Restart Application

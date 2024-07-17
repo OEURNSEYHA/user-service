@@ -135,7 +135,6 @@
 
 
 
-
 name: CI/CD Pipeline for Service
 
 on:
@@ -171,19 +170,19 @@ jobs:
       - name: List build directory contents
         run: ls -la ./build
 
-      - name: Run tests
-        env:
-          CUSTOM_ENV_VARIABLE: ${{ secrets.MONGODB_URL }}
-        run: yarn test
+      - name: Copy package.json and yarn.lock to build directory
+        run: |
+          cp package.json build/
+          cp yarn.lock build/
+
+      - name: List final build directory contents
+        run: ls -la ./build
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: |
-            ./build
-            ./package.json
-            ./yarn.lock
+          path: ./build
 
   deploy:
     runs-on: ubuntu-latest
@@ -222,18 +221,6 @@ jobs:
           target: "/home/ubuntu/apps/build"
           strip_components: 0
           overwrite: true
-
-      - name: Copy package.json and yarn.lock to Server
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          source: |
-            ./build/package.json
-            ./build/yarn.lock
-          target: "/home/ubuntu/apps/build"
 
       - name: List server build directory contents
         uses: appleboy/ssh-action@master

@@ -366,7 +366,7 @@ jobs:
           port: 22
           source: |
             ./package.json
-            ./yarn.lock
+           
           target: "/home/ubuntu/apps/build"
 
       - name: List server build directory contents

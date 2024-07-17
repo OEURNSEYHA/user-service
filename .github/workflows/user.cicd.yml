@@ -116,8 +116,7 @@ jobs:
           script: |
             source /home/ubuntu/.nvm/nvm.sh
             source /home/ubuntu/.profile
-
-            cd /home/ubuntu/apps/build/build/build
+            cd /home/ubuntu/apps/auth/build
             yarn install --production
             if pm2 show auth > /dev/null; then
               echo "Application is running. Restarting..."

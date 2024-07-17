@@ -231,8 +231,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           source: |
-            ./package.json
-            ./yarn.lock
+            ./build/package.json
+            ./build/yarn.lock
           target: "/home/ubuntu/apps/build"
 
       - name: List server build directory contents

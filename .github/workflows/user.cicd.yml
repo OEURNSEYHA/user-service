@@ -134,7 +134,6 @@
 #             fi
 
 
-
 # name: CI/CD Pipeline for Service
 
 # on:
@@ -148,7 +147,7 @@
 #     runs-on: ubuntu-latest
 #     defaults:
 #       run:
-#         working-directory: "."
+#         working-directory: "." 
 
 #     steps:
 #       - name: Checkout code
@@ -170,13 +169,10 @@
 #       - name: List build directory contents
 #         run: ls -la ./build
 
-#       - name: Copy package.json and yarn.lock to build directory
-#         run: |
-#           cp package.json build/
-#           cp yarn.lock build/
-
-#       - name: List final build directory contents
-#         run: ls -la ./build
+#       - name: Run tests
+#         env:
+#           CUSTOM_ENV_VARIABLE: ${{ secrets.MONGODB_URL }}
+#         run: yarn test
 
 #       - name: Archive build artifacts
 #         uses: actions/upload-artifact@v4
@@ -194,7 +190,7 @@
 #         uses: actions/download-artifact@v4
 #         with:
 #           name: build
-#           path: ./build
+#           path: ./build 
 
 #       - name: List downloaded artifacts
 #         run: ls -la ./build
@@ -219,17 +215,7 @@
 #           port: 22
 #           source: "./build/*"
 #           target: "/home/ubuntu/apps/build"
-#           strip_components: 0
-#           overwrite: true
-
-#       - name: List server build directory contents
-#         uses: appleboy/ssh-action@master
-#         with:
-#           host: ${{ secrets.SERVER_IP }}
-#           username: ${{ secrets.SERVER_USERNAME }}
-#           key: ${{ secrets.SSH_PRIVATE_KEY }}
-#           port: 22
-#           script: ls -la /home/ubuntu/apps/build
+#           strip_components: 1
 
 #       - name: Create .env File
 #         uses: appleboy/ssh-action@master
@@ -241,7 +227,7 @@
 #           script: |
 #             echo "NODE_ENV=production" > /home/ubuntu/apps/build/configs/.env.production
 #             echo "PORT=${{secrets.PORT}}" >> /home/ubuntu/apps/build/configs/.env.production
-#             echo "DATABASE_URL=${{secrets.MONGODB_URL}}" >> /home/ubuntu/apps/build/configs/.env.production
+#             echo "MONGODB_URL=${{secrets.MONGODB_URL}}" >> /home/ubuntu/apps/build/configs/.env.production
 
 #       - name: Install Dependencies and Restart Application
 #         uses: appleboy/ssh-action@master
@@ -268,6 +254,7 @@
 #               echo "Application is not running. Starting..."
 #               pm2 start yarn --name auth -- start
 #             fi
+
 
 
 name: CI/CD Pipeline for Service
@@ -380,13 +367,13 @@ jobs:
             yarn install --production
 
             # Debug: List files after installation
-            ls -la /home/ubuntu/apps/build
+            ls -la 
 
             # Check if the PM2 process is running
-            if pm2 show auth > /dev/null; then
+            if pm2 show user-service > /dev/null; then
               echo "Application is running. Restarting..."
-              pm2 restart auth
+              pm2 restart user-service
             else
               echo "Application is not running. Starting..."
-              pm2 start yarn --name auth -- start
+              pm2 start yarn --name user-service -- start
             fi

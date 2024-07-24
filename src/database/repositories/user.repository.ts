@@ -67,6 +67,7 @@ export class UserRepositories {
 
   }
 
+
   // Delete user
   public async deleteUser(
     id: string

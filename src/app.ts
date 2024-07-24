@@ -5,17 +5,17 @@ import fs from 'fs';
 import path from 'path'
 import { loggingMiddleware } from './utils/logger';
 import { errorHandler } from './utils/errors/errorHanler';
-
+const cors = require('cors');
 
 // Dynamically load swagger.json
 const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, 'docs/swagger.json'), 'utf8'));
-
 
 
 // ========================
 // Initialize App Express
 // ========================
 const app = express();
+app.use(cors()); // Allow all CORS requests
 
 // app.use(swaggerUi.serve);
 app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocument));

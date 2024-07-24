@@ -1,0 +1,24 @@
+node_modules
+coverage
+build
+.git
+.github
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+ecosystem.config.js
+ecosystem.config.local.js
+jest.config.js
+package-lock.json
+
+
+
+# Using a .dockerignore file helps to:
+
+# 1. Reduce Build Context Size: By excluding unnecessary files and directories, you reduce the amount of data sent to the Docker daemon during the build process. This makes the build process faster and more efficient.
+
+# 2. Improve Security: Sensitive files that are not needed in the Docker image, such as .git directories or configuration files, are excluded. This reduces the risk of exposing sensitive information.
+
+# 3. Optimize Docker Image Size: By not including unnecessary files, the resulting Docker image will be smaller, making it faster to transfer and deploy.
+
+# 4. Prevent Build Conflicts: Excluding files that are not relevant to the build process helps avoid potential conflicts or issues arising from including unwanted files.

@@ -10,12 +10,14 @@ import {
   // Middlewares,
   Put,
   Delete,
+  Tags,
  
 } from "tsoa";
 import { UserModel, User, ICreateUser, IUpdateUser } from "@/src/database/models/user.model";
 import { Request as ExpressRequest } from "express";
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken";
+
 import {
   NotFoundError,
   ValidationError,
@@ -37,6 +39,8 @@ export interface UserQueryParams {
 
 
 
+
+@Tags("users")
 @Route("api/v1/users")
 export class UsersController extends Controller {
   // private userService: UserService = new UserService();

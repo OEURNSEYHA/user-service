@@ -1,7 +1,26 @@
 {
-    "watch": [
-      "src"
-    ],
-    "ext": "ts",
-    "exec": "ts-node src/server.ts"
+  "watch": ["src"],
+  "ext": "ts",
+  "exec": "ts-node src/server.ts",
+  "legacyWatch": true,
+  "verbose": true,
+  
+  "disabledProperties": {
+    "debug": true,
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "execArgs": ["--inspect=0.0.0.0:9229"],
+    "events": {
+      "restart": "echo 'App has restarted'",
+      "crash": "echo 'App crashed, waiting for changes to restart...' && sleep 10",
+      "exit": "echo 'App has exited'"
+    },
+    "restartable": "rs",
+    "delay": "2500"
   }
+}
+

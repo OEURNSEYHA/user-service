@@ -7,7 +7,6 @@ import { connectDB } from "./database";
 import { createBorderedMessage } from "./utils/create-border/createBorderMessage";
 //=========================================================================
 
-
 connectDB();
 
 function run(): void {

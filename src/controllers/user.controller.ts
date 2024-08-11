@@ -39,7 +39,6 @@ export interface UserQueryParams {
 
 
 
-
 @Tags("users")
 @Route("api/v1/users")
 export class UsersController extends Controller {

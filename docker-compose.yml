@@ -11,8 +11,8 @@ services:                                         #Defines the list of services 
     ports:                                        #Maps network ports from the host to the container.
       - "27017:27017"                             #Maps port 27017 on the host to port 27017 in the container. 
     volumes:                                      #Mounts host directories or volumes to the container for persistent storage.
-      - mongo-data:/data/db                       #Maps the named volume mongo-data to /data/db inside the container. This is where MongoDB stores its data files.
-
+      - ./data:/data/db                           #Maps the named volume mongo-data to /data/db inside the container. This is where MongoDB stores its data files.
+        # configdb
   node:                                           #This is the name of the Node.js service. It will create a container with this name.
     build:                                        #Specifies the build context and Dockerfile for this service context: .
       context: .                                  #Sets the build context to the current directory (`.`).     
@@ -28,13 +28,6 @@ services:                                         #Defines the list of services 
       - .:/app:delegated                          #.: The current directory on the host. /app: The directory in the container where the current directory is mounted. :delegated: An optional flag that can help with performance by allowing the host and container to operate on the file system asynchronously.
       - /app/node_modules
     command: sh -c "yarn install && yarn run dev" #Overrides the default command to run when the container starts.
-
-volumes:
-  mongo-data:
-
-
-
-
 
 
 

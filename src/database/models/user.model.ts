@@ -2,13 +2,25 @@
 import { Schema, model } from "mongoose";
 import validator from "validator";
 
+// export interface User {
+//   fullName: string;
+//   email: string;
+//   password: string;
+//   age: number;
+//   status: string;
+//   role: string; 
+// }
+
+ // Adjust according to your DB library
+
 export interface User {
+
   fullName: string;
   email: string;
   password: string;
-  age: number;
+  age: number ; // Optional and can be null
   status: string;
-  role: string; 
+  role: string;
 }
 
 export interface IUpdateUser {

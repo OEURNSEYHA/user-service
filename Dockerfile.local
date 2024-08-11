@@ -1,0 +1,26 @@
+# BUILD STAGE
+FROM node:20-alpine as builder
+
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN yarn install
+
+COPY tsconfig.json tsoa.json ./
+COPY src ./src
+
+RUN yarn build
+
+# FINAL STAGE
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+RUN yarn install --production
+
+# Copy the built application from the build stage
+COPY --from=builder /app/build/ .
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
